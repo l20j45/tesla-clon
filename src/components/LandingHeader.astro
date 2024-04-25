@@ -21,6 +21,13 @@ import Logo from "./Logo.astro";
       <li><a href="#">Carga </a></li>
     </ul>
   </nav>
+
+  <div
+    id="menu-backdrop"
+    class="absolute bg-black/5 backdrop-blur-lg rounded left-[var(--left)] top-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-300 ease-in-out opacity-0 -z-10"
+  >
+  </div>
+
   <nav class="flex flex-grow justify-end basis-0">
     <ul
       class="flex text-sm [&>li>a]:inline-block [&>li>a]:font-medium [&>li>a]:py-2 [&>li>a]:px-4"
@@ -32,6 +39,37 @@ import Logo from "./Logo.astro";
     </ul>
   </nav>
 </header>
+
+<script>
+  const listItem = document.querySelectorAll("#landing-header li");
+  const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
+
+  listItem.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const { left, top, width, height } = item.getBoundingClientRect();
+      const {clientHeight, clientWidth } = item
+
+console.log({clientHeight, clientWidth});
+      console.log({left, top, width, height});
+      
+      menuBackDrop.style.setProperty("--left", `${left}px`);
+      menuBackDrop.style.setProperty("--top", `${top}px`);
+      menuBackDrop.style.setProperty("--width", `${width}px`);
+      menuBackDrop.style.setProperty("--height", `${height}px`);
+      menuBackDrop.style.opacity ="1";
+      menuBackDrop.style.visibility = "visible";
+    });
+
+    item.addEventListener("mouseleave", (e) => {
+
+      menuBackDrop.style.opacity ="0";
+      menuBackDrop.style.visibility = "hidden";
+
+    }
+  
+  )
+  });
+</script>
 
 <script>
   const observerOptions = {
