@@ -11,7 +11,7 @@ import Logo from "./Logo.astro";
   </div>
   <nav>
     <ul
-      class="flex text-sm [&>li>a]:inline-block [&>li>a]:font-medium [&>li>a]:py-2 [&>li>a]:px-4"
+      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-150 [&>li>a]:inline-block [&>li>a]:font-medium [&>li>a]:py-2 [&>li>a]:px-4"
     >
       <li><a href="#">Model s</a></li>
       <li><a href="#">Model 3</a></li>
@@ -41,7 +41,7 @@ import Logo from "./Logo.astro";
   };
   const $Header = document.querySelector("#landing-header") as HTMLElement;
 
-  const observer = IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const { isIntersecting } = entry;
       if (isIntersecting) {
@@ -50,4 +50,9 @@ import Logo from "./Logo.astro";
       }
     });
   }, observerOptions);
+
+  const $sections = document.querySelectorAll(".landing-section");
+  $sections.forEach((section) => {
+    observer.observe(section);
+  });
 </script>
