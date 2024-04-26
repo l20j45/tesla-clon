@@ -6,5 +6,5 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://l20j45.github.io',
-  base: 'my-repo',
+  base: 'tesla-clon',
 });
